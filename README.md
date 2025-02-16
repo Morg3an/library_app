@@ -23,8 +23,8 @@ Ensure you have the following installed:
 ### Steps
 1. **Clone the Repository**
    ```sh
-   git clone https://github.com/Morg3an/LibraryApp.git
-   cd LibraryApp
+   git clone https://github.com/Morg3an/library_app.git
+   cd library_app
    ```
 2. **Install Dependencies**
    ```sh
