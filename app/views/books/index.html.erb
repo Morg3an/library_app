@@ -1,0 +1,36 @@
+<div class="min-h-screen bg-gray-100 p-8">
+  <h1 class="text-4xl font-extrabold text-center mb-8 text-blue-700">📚 Books List</h1>
+
+  <div class="max-w-4xl mx-auto">
+    <% if @books.any? %>
+      <div class="grid gap-6">
+        <% @books.each do |book| %>
+          <div class="bg-white shadow-lg rounded-lg p-6 flex items-center justify-between">
+            <div>
+              <h2 class="text-xl font-semibold text-gray-800"><%= book.title %></h2>
+              <p class="text-gray-600">Author: <span class="font-medium"><%= book.author %></span></p>
+              <p class="mt-2">
+                <% if book.status == "Available" %>
+                  <span class="px-3 py-1 bg-green-200 text-green-800 text-sm font-semibold rounded-full">Available</span>
+                <% else %>
+                  <span class="px-3 py-1 bg-red-200 text-red-800 text-sm font-semibold rounded-full">Borrowed</span>
+                <% end %>
+              </p>
+            </div>
+            <div class="flex gap-3">
+              <%= link_to "✏ Edit", edit_book_path(book), class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" %>
+
+              <%= link_to "🗑 Delete", book, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-center text-gray-500 text-lg">No books available. Add a new book below.</p>
+    <% end %>
+
+    <div class="mt-8 text-center">
+      <%= link_to "➕ Add New Book", new_book_path, class: "px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<h2><%= @book.title %> by <%= @book.author %></h2>
+<p>Status: <%= @book.status %></p>
+
+<h3>Borrowing History</h3>
+<ul>
+  <% @book.borrowings.each do |borrowing| %>
+    <li>
+      Borrowed by <%= borrowing.borrower_name %> on <%= borrowing.borrowed_at.strftime("%d-%m-%Y") %>
+      <% if borrowing.returned_at %>
+        - Returned on <%= borrowing.returned_at.strftime("%d-%m-%Y") %>
+      <% else %>
+        | <%= link_to "Return Book", return_book_borrowing_path(borrowing), method: :patch %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Back to Books", books_path %>
